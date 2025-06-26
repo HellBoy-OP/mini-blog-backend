@@ -14,6 +14,19 @@ export const getAllPosts = async (_req: Request, res: Response) => {
     }
 }
 
+export const getPostById = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+
+    await db.read();
+    const post = db.data.posts.find(post => post.id === id);
+
+    if (!post) {
+        res.status(404).json({ message: "Post not found" });
+    } else {
+        res.status(200).json({ message: "Post fetched successfully", post });
+    }
+}
+
 export const createPost = async (req: Request, res: Response) => {
     const parseResult = PostSchema.omit({ id: true }).safeParse(req.body);
 

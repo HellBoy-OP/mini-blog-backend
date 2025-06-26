@@ -3,6 +3,7 @@ import {
     createPost,
     deletePost,
     getAllPosts,
+    getPostById,
     updatePost
 } from "../controllers/adminController";
 
@@ -10,6 +11,7 @@ import {
 const router = express.Router();
 
 router.get("/", getAllPosts);
+router.get("/:id", getPostById);
 router.post("/", createPost);
 router.put("/:id", updatePost);
 router.delete("/:id", deletePost);
