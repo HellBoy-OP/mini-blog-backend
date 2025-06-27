@@ -31,7 +31,7 @@ export const createPost = async (req: Request, res: Response) => {
     const parseResult = PostSchema.omit({ id: true }).safeParse(req.body);
 
     if (!parseResult.success) {
-        res.status(400).json({ message: "Invalid post data", errors: parseResult.error.errors });
+        res.status(400).json({ message: "Invalid post data", errors: parseResult.error.message });
         return;
     }
 
